@@ -1,5 +1,5 @@
 import useInput from "../hooks/use-input";
-
+import React from 'react';
 const BasicForm = (props) => {
   //firstname
 

@@ -1,9 +1,10 @@
-import BasicForm from "./components/BasicForm";
+
+import AddMealsForm from "./components/AddMealsForm";
 
 function App() {
   return (
     <div className="app">
-      <BasicForm />
+      <AddMealsForm />
     </div>
   );
 }

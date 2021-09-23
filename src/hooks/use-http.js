@@ -8,27 +8,26 @@ const useHttp = () => {
     setIsLoading(true);
     setError(null);
     try {
-    const requestOption = {
-      method: requestConfig.method ? requestConfig.method : "GET",
-      headers: requestConfig.headers ? requestConfig.headers : {},
-      body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
-    };
-    const response = await fetch(requestConfig.url, requestConfig);
-    
-    if (!response.ok) {
-        throw new Error("request failed")
+      const requestOption = {
+        method: requestConfig.method ? requestConfig.method : "GET",
+        headers: requestConfig.headers ? requestConfig.headers : {},
+        body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+      };
+      const response = await fetch(requestConfig.url, requestOption);
+
+      if (!response.ok) {
+        throw new Error("request failed");
+      }
+
+      const data = await response.JSON;
+
+      applyData(data);
+    } catch (err) {
+      setError(err.message || "something went wrong");
     }
-    
-    const data = await response.JSON;
 
-    applyData(data);
-  
-}catch(err) {
-    setError(err.message || "something went wrong"))
-}
-
-setIsLoading(false);
-};
+    setIsLoading(false);
+  };
 
   return { isLoading, error, sendRequest };
 };
